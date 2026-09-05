@@ -4,9 +4,7 @@
 Un Sistema de Gestión de Tutorías no es solo una agenda de citas; es una herramienta de retención estudiantil y apoyo académico. Los conceptos clave que lo definen son:
  * Acompañamiento Académico Integral (Intervención Temprana): El sistema debe servir como una red de seguridad. No se trata solo de que un estudiante busque ayuda cuando va a reprobar, sino de crear alertas tempranas (por ejemplo, basadas en bajas calificaciones en parciales) para sugerir tutorías proactivamente.
  * Aprendizaje Entre Pares (Peer Tutoring): Muchas universidades dependen de estudiantes de semestres superiores para tutorizar a los de primeros semestres. El sistema debe gestionar este ecosistema, validando que el tutor haya aprobado la materia con excelencia y midiendo la efectividad de su enseñanza mediante retroalimentación.
- * Emparejamiento Inteligente (Matching): Un concepto crítico es cómo el sistema conecta a un estudiante con un tutor. No solo se basa en la disponibilidad horaria, sino en el estilo de aprendizaje, el idioma, o la especialidad específica del tutor dentro de una materia amplia (ej. un tutor excelente en derivadas pero no en integrales dentro de Cálculo).
- * Espacios de Aprendizaje Híbrido: La gestión logística debe contemplar la omnicanalidad. Las tutorías ocurren en salas de estudio de la biblioteca, en laboratorios específicos o a través de enlaces de videoconferencia.
- * Analítica de Retención: Para la administración universitaria, el concepto más importante es el ROI (Retorno de Inversión) del programa. El sistema debe cruzar la asistencia a tutorías con el rendimiento académico final para demostrar si el programa realmente está disminuyendo la deserción estudiantil.
+ * Espacios de Aprendizaje Híbrido: La gestión logística debe contemplar la multicanalidad. Las tutorías ocurren en salas de estudio de la biblioteca, en laboratorios específicos o a través de enlaces de videoconferencia.
 
 # Tendencias Actuales en los Sistemas de Tutorías
 La tecnología educativa está transformando radicalmente la forma en que las universidades gestionan estos espacios. Las tendencias más fuertes hoy en día son:
