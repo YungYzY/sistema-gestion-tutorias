@@ -1,3 +1,4 @@
+# Diagrama Entidad-Relación
 ```mermaid
 erDiagram
     PERSONA {
