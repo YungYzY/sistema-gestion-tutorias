@@ -1,4 +1,4 @@
-erDiagram
+
     %% --- ENTIDADES PRINCIPALES ---
     PERSONA {
         string nombre
