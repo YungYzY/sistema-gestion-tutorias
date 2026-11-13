@@ -13,6 +13,7 @@ CREATE TABLE Estudiante (
     Semestre INT NOT NULL,
     ID_Persona INT NOT NULL,
     FOREIGN KEY (ID_Persona) REFERENCES Persona(ID_Persona)
+);
 
 CREATE TABLE Tutor (
     ID_Tutor INT PRIMARY KEY,
