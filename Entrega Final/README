@@ -1,0 +1,27 @@
+# Tercera Entrega - Sistema de Gestión de Tutorías Académicas
+
+En esta carpeta se encuentran los recursos correspondientes a la tercera entrega del proyecto de Base de Datos.
+
+Este tercer entregable corresponde a la implementación funcional de la base de datos para el sistema de tutorías académicas a partir del modelo relacional normalizado, lo cual incluye: la creación de tablas con sus atributos correspondientes, la inserción de datos y el desarrollo de consultas representativas, tales como: seguimiento de solicitudes y sesiones de tutoría, disponibilidad de tutores, control de asistencia y alertas tempranas de riesgo académico.
+
+| Archivo | Descripción |
+|---|---|
+| [Diagrama Base de Datos Tutorías](./Diagrama_SistemaTutorias.png) | Diagrama / esquema visual de la base de datos |
+| [Código Creación](./Creacion.sql) | Código para la creación de la base de datos |
+| [Código Inserción](./Insercion.sql) | Código para insertar/poblar la base de datos |
+| [Código Consultas](./Consultas.sql) | Ejemplos de consultas sobre nuestra base de datos |
+
+## Consultas incluidas
+
+| # | Consulta |
+|---|---|
+| 1 | Tutores de tipo *Profesor* |
+| 2 | Estudiantes con sus datos personales (nombre, apellido y correo) |
+| 3 | Carrera y semestre de cada estudiante |
+| 4 | Sesiones de tutoría programadas, con estudiante, tutor y tema, ordenadas por fecha y hora |
+| 5 | Estudiantes en riesgo alto o medio, por materia |
+| 6 | Solicitudes de tutoría pendientes, con su tema y materia |
+| 7 | Total de fallas por estudiante (solo quienes tienen fallas) |
+| 8 | Tutores y su disponibilidad horaria para una materia específica |
+| 9 | Historial académico de un estudiante, del periodo más reciente al más antiguo |
+| 10 | Estudiantes con matrícula condicional en el periodo actual |
