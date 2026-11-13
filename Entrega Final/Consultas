@@ -1,0 +1,100 @@
+SELECT ID_Tutor, Tipo
+FROM Tutor
+WHERE Tipo = 'Profesor';
+
+SELECT e.Codigo_Estudiante, p.Nombre, p.Apellido, p.Correo
+FROM Estudiante e
+JOIN Persona p ON e.ID_Persona = p.ID_Persona;
+
+SELECT Codigo_Estudiante, Carrera, Semestre
+FROM Estudiante;
+
+SELECT
+    st.Fecha,
+    st.Hora_Inicio,
+    st.Hora_Fin,
+    e_per.Nombre AS Nombre_Estudiante,
+    e_per.Apellido AS Apellido_Estudiante,
+    t_per.Nombre AS Nombre_Tutor,
+    t_per.Apellido AS Apellido_Tutor,
+    tem.Nombre AS Tema_Tutoria
+FROM Sesion_Tutoria st
+JOIN Solicitud_Tutoria sol ON st.ID_Solicitud = sol.ID_Solicitud
+JOIN Estudiante e ON sol.Codigo_Estudiante = e.Codigo_Estudiante
+JOIN Persona e_per ON e.ID_Persona = e_per.ID_Persona
+JOIN Tutor t ON st.ID_Tutor = t.ID_Tutor
+JOIN Persona t_per ON t.ID_Persona = t_per.ID_Persona
+JOIN Tema tem ON sol.Codigo_Tema = tem.Codigo_Tema
+WHERE st.Estado = 'Programada'
+ORDER BY st.Fecha ASC, st.Hora_Inicio ASC;
+
+SELECT
+    e.Codigo_Estudiante,
+    p.Nombre,
+    p.Apellido,
+    m.Nombre AS Materia,
+    a.Nivel_Riesgo
+FROM Alerta_Temprana a
+JOIN Estudiante e ON a.Codigo_Estudiante = e.Codigo_Estudiante
+JOIN Persona p ON e.ID_Persona = p.ID_Persona
+JOIN Materia m ON a.Codigo_Materia = m.Codigo_Materia
+WHERE a.Nivel_Riesgo IN ('Riesgo Alto', 'Riesgo Medio');
+
+SELECT
+    sol.ID_Solicitud,
+    p.Nombre AS Estudiante,
+    p.Apellido,
+    tem.Nombre AS Tema,
+    m.Nombre AS Materia
+FROM Solicitud_Tutoria sol
+JOIN Estudiante e ON sol.Codigo_Estudiante = e.Codigo_Estudiante
+JOIN Persona p ON e.ID_Persona = p.ID_Persona
+JOIN Tema tem ON sol.Codigo_Tema = tem.Codigo_Tema
+JOIN Materia m ON tem.Codigo_Materia = m.Codigo_Materia
+WHERE sol.Estado = 'Pendiente';
+
+SELECT
+    e.Codigo_Estudiante,
+    p.Nombre,
+    p.Apellido,
+    SUM(a.Fallas) AS Total_Fallas
+FROM Asistencia a
+JOIN Estudiante e ON a.Codigo_Estudiante = e.Codigo_Estudiante
+JOIN Persona p ON e.ID_Persona = p.ID_Persona
+GROUP BY e.Codigo_Estudiante, p.Nombre, p.Apellido
+HAVING SUM(a.Fallas) > 0;
+
+SELECT
+    p.Nombre,
+    p.Apellido,
+    t.Tipo,
+    d.Dia_Semana,
+    d.Hora_Inicio,
+    d.Hora_Fin
+FROM Tutor t
+JOIN Persona p ON t.ID_Persona = p.ID_Persona
+JOIN Especialidad_Tutorias et ON t.ID_Tutor = et.ID_Tutor
+JOIN Tema tem ON et.Codigo_Tema = tem.Codigo_Tema
+JOIN Materia m ON tem.Codigo_Materia = m.Codigo_Materia
+JOIN Disponibilidad d ON t.ID_Tutor = d.ID_Tutor
+WHERE m.Nombre = 'Cálculo Multivariable';
+
+SELECT
+    ha.Periodo_Academico,
+    m.Nombre AS Materia,
+    ha.Calificacion_Final
+FROM Historial_Academico ha
+JOIN Materia m ON ha.Codigo_Materia = m.Codigo_Materia
+WHERE ha.Codigo_Estudiante = '2242908'
+ORDER BY ha.Periodo_Academico DESC;
+
+SELECT
+    e.Codigo_Estudiante,
+    p.Nombre,
+    p.Apellido,
+    e.Carrera,
+    e.Semestre
+FROM Matricula_Periodo mp
+JOIN Estudiante e ON mp.Codigo_Estudiante = e.Codigo_Estudiante
+JOIN Persona p ON e.ID_Persona = p.ID_Persona
+WHERE mp.Periodo_Academico = '2026-II' AND mp.Estado_Matricula = 'Condicional';
