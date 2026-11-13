@@ -1,4 +1,6 @@
 CREATE DATABASE SistemaTutorias;
+USE SistemaTutorias;
+
 CREATE TABLE Persona (
     ID_Persona INT PRIMARY KEY,
     Nombre VARCHAR(100) NOT NULL,
