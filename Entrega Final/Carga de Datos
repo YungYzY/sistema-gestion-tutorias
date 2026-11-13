@@ -1,0 +1,117 @@
+INSERT INTO Persona (ID_Persona, Nombre, Apellido, Correo, Telefono) VALUES
+(1, 'Carlos', 'Gomez', 'carlos.gomez@uis.edu.co', '3001234567'),
+(2, 'Lorena', 'Perez', 'lorena.perez@uis.edu.co', '3007654321'),
+(3, 'Guy', 'Kawasaki', 'guy.kawasaki@uis.edu.co', '3101112233'),
+(4, 'Ray', 'Bradbury', 'ray.bradbury@uis.edu.co', '3104445566'),
+(5, 'Matt', 'Haig', 'matt.haig@uis.edu.co', '3107778899'),
+(6, 'Leti', 'Vito', 'leti.vito@uis.edu.co', '3112223344'),
+(7, 'Leon', 'Kennedy', 'leons.kennedy@uis.edu.co', '3115556677'),
+(8, 'Giorno', 'Giovanna', 'giorno.giovanna@uis.edu.co', '3128889900'),
+(9, 'Makoto', 'Yuki', 'makoto.yuki@uis.edu.co', '3121112233'),
+(10, 'Kurt', 'Cobain', 'kurt.cobain@uis.edu.co', '3134445566');
+
+INSERT INTO Estudiante (Codigo_Estudiante, Carrera, Semestre, ID_Persona) VALUES
+('2242908', 'Ingeniería de Sistemas', 4, 1),
+('2242909', 'Ingeniería de Sistemas', 4, 2),
+('2242910', 'Ingeniería de Sistemas', 3, 7),
+('2242911', 'Ingeniería Industrial', 5, 6),
+('2242912', 'Economía', 2, 5);
+
+INSERT INTO Tutor (ID_Tutor, Tipo, ID_Persona) VALUES
+(101, 'Profesor', 3),
+(102, 'Estudiante Avanzado', 4),
+(103, 'Egresado', 8),
+(104, 'Estudiante Avanzado', 9),
+(105, 'Profesor', 10);
+
+INSERT INTO Materia (Codigo_Materia, Nombre) VALUES
+('SIS101', 'Matemáticas Discretas'),
+('SIS102', 'Cálculo Multivariable'),
+('SIS103', 'Física I - Mecánica'),
+('SIS104', 'Bases de Datos'),
+('SIS105', 'Dirección Empresarial I');
+
+INSERT INTO Tema (Codigo_Tema, Nombre, Codigo_Materia) VALUES
+('TEM01', 'Grafos y Árboles', 'SIS101'),
+('TEM02', 'Teorema de Stokes', 'SIS102'),
+('TEM03', 'Cinemática', 'SIS103'),
+('TEM04', 'Normalización 3FN', 'SIS104'),
+('TEM05', 'Teoria de Números', 'SIS105'),
+('TEM06', 'Teorema de Green', 'SIS102');
+
+INSERT INTO Especialidad_Tutorias (ID_Tutor, Codigo_Tema) VALUES
+(101, 'TEM05'),
+(102, 'TEM04'),
+(103, 'TEM01'),
+(104, 'TEM02'),
+(105, 'TEM03');
+
+INSERT INTO Disponibilidad (Dia_Semana, Hora_Inicio, Hora_Fin, ID_Tutor) VALUES
+('Lunes', '14:00:00', '16:00:00', 101),
+('Martes', '08:00:00', '10:00:00', 102),
+('Miércoles', '10:00:00', '12:00:00', 103),
+('Jueves', '16:00:00', '18:00:00', 104),
+('Viernes', '08:00:00', '10:00:00', 105);
+
+INSERT INTO Espacio (Tipo) VALUES
+('Aula 201'),
+('Laboratorio Sistemas'),
+('Sala Estudio Biblioteca'),
+('Virtual Teams'),
+('Cubiculo Estudio');
+
+INSERT INTO Solicitud_Tutoria (Estado, Codigo_Estudiante, Codigo_Tema) VALUES
+('Pendiente', '2242908', 'TEM02'),
+('Aprobada', '2242909', 'TEM05'),
+('Completada', '2242910', 'TEM04'),
+('Rechazada', '2242911', 'TEM01'),
+('Aprobada', '2242912', 'TEM03');
+
+INSERT INTO Sesion_Tutoria (Fecha, Hora_Inicio, Hora_Fin, Estado, ID_Solicitud, ID_Tutor, ID_Espacio) VALUES
+('2026-11-15', '16:00:00', '17:00:00', 'Programada', 1, 104, 3),
+('2026-11-16', '14:00:00', '15:00:00', 'Programada', 2, 101, 1),
+('2026-11-10', '08:00:00', '09:00:00', 'Realizada', 3, 102, 2),
+('2026-11-18', '10:00:00', '11:00:00', 'Cancelada', 4, 103, 4),
+('2026-11-20', '08:00:00', '09:00:00', 'Programada', 5, 105, 5);
+
+INSERT INTO Asistencia (Fallas, Codigo_Estudiante, ID_Sesion) VALUES
+(0, '2242908', 1),
+(0, '2242909', 2),
+(0, '2242910', 3),
+(1, '2242911', 4),
+(0, '2242912', 5);
+
+INSERT INTO Retroalimentacion (Calificacion, ID_Sesion, Codigo_Estudiante) VALUES
+(4.5, 1, '2242908'),
+(5.0, 2, '2242909'),
+(4.0, 3, '2242910'),
+(3.5, 4, '2242911'),
+(4.8, 5, '2242912');
+
+INSERT INTO Calificacion_Parcial (Nota, Codigo_Estudiante, Codigo_Materia) VALUES
+(4.2, '2242908', 'SIS102'),
+(3.8, '2242909', 'SIS105'),
+(4.5, '2242910', 'SIS104'),
+(2.9, '2242911', 'SIS101'),
+(4.0, '2242912', 'SIS103');
+
+INSERT INTO Historial_Academico (Periodo_Academico, Calificacion_Final, Codigo_Estudiante, Codigo_Materia) VALUES
+('2026-II', 4.1, '2242908', 'SIS104'),
+('2026-I', 4.5, '2242909', 'SIS105'),
+('2026-II', 3.9, '2242910', 'SIS101'),
+('2025-II', 4.2, '2242911', 'SIS102'),
+('2026-I', 4.8, '2242912', 'SIS103');
+
+INSERT INTO Alerta_Temprana (Nivel_Riesgo, Codigo_Estudiante, Codigo_Materia) VALUES
+('Riesgo Medio', '2242908', 'SIS102'),
+('Sin Riesgo', '2242909', 'SIS105'),
+('Riesgo Bajo', '2242910', 'SIS104'),
+('Riesgo Alto', '2242911', 'SIS101'),
+('Riesgo Bajo', '2242912', 'SIS103');
+
+INSERT INTO Matricula_Periodo (Periodo_Academico, Estado_Matricula, Codigo_Estudiante) VALUES
+('2026-II', 'Activa', '2242908'),
+('2026-II', 'Activa', '2242909'),
+('2026-II', 'Condicional', '2242910'),
+('2026-II', 'Activa', '2242911'),
+('2026-II', 'Activa', '2242912');
