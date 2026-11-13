@@ -1,0 +1,133 @@
+CREATE DATABASE SistemaTutorias;
+CREATE TABLE Persona (
+    ID_Persona INT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Apellido VARCHAR(100) NOT NULL,
+    Correo VARCHAR(100) UNIQUE NOT NULL,
+    Telefono VARCHAR(20)
+);
+
+CREATE TABLE Estudiante (
+    Codigo_Estudiante VARCHAR(50) PRIMARY KEY,
+    Carrera VARCHAR(100) NOT NULL,
+    Semestre INT NOT NULL,
+    ID_Persona INT NOT NULL,
+    FOREIGN KEY (ID_Persona) REFERENCES Persona(ID_Persona)
+
+CREATE TABLE Tutor (
+    ID_Tutor INT PRIMARY KEY,
+    Tipo VARCHAR(50) NOT NULL,
+    ID_Persona INT NOT NULL,
+    FOREIGN KEY (ID_Persona) REFERENCES Persona(ID_Persona)
+);
+
+CREATE TABLE Materia (
+    Codigo_Materia VARCHAR(50) PRIMARY KEY,
+    Nombre VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE Tema (
+    Codigo_Tema VARCHAR(50) PRIMARY KEY,
+    Nombre VARCHAR(150) NOT NULL,
+    Codigo_Materia VARCHAR(50) NOT NULL,
+    FOREIGN KEY (Codigo_Materia) REFERENCES Materia(Codigo_Materia)
+);
+
+CREATE TABLE Especialidad_Tutorias (
+    ID_Especialidad INT AUTO_INCREMENT PRIMARY KEY,
+    ID_Tutor INT NOT NULL,
+    Codigo_Tema VARCHAR(50) NOT NULL,
+    FOREIGN KEY (ID_Tutor) REFERENCES Tutor(ID_Tutor),
+    FOREIGN KEY (Codigo_Tema) REFERENCES Tema(Codigo_Tema)
+);
+
+CREATE TABLE Disponibilidad (
+    ID_Disponibilidad INT AUTO_INCREMENT PRIMARY KEY,
+    Dia_Semana VARCHAR(20) NOT NULL,
+    Hora_Inicio TIME NOT NULL,
+    Hora_Fin TIME NOT NULL,
+    ID_Tutor INT NOT NULL,
+    FOREIGN KEY (ID_Tutor) REFERENCES Tutor(ID_Tutor)
+);
+
+CREATE TABLE Espacio (
+    ID_Espacio INT AUTO_INCREMENT PRIMARY KEY,
+    Tipo VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Solicitud_Tutoria (
+    ID_Solicitud INT AUTO_INCREMENT PRIMARY KEY,
+    Estado VARCHAR(50) NOT NULL,
+    Codigo_Estudiante VARCHAR(50) NOT NULL,
+    Codigo_Tema VARCHAR(50) NOT NULL,
+    FOREIGN KEY (Codigo_Estudiante) REFERENCES Estudiante(Codigo_Estudiante),
+    FOREIGN KEY (Codigo_Tema) REFERENCES Tema(Codigo_Tema)
+);
+
+CREATE TABLE Sesion_Tutoria (
+    ID_Sesion INT AUTO_INCREMENT PRIMARY KEY,
+    Fecha DATE NOT NULL,
+    Hora_Inicio TIME NOT NULL,
+    Hora_Fin TIME NOT NULL,
+    Estado VARCHAR(50) NOT NULL,
+    ID_Solicitud INT NOT NULL,
+    ID_Tutor INT NOT NULL,
+    ID_Espacio INT NOT NULL,
+    FOREIGN KEY (ID_Solicitud) REFERENCES Solicitud_Tutoria(ID_Solicitud),
+    FOREIGN KEY (ID_Tutor) REFERENCES Tutor(ID_Tutor),
+    FOREIGN KEY (ID_Espacio) REFERENCES Espacio(ID_Espacio)
+);
+
+CREATE TABLE Asistencia (
+    ID_Asistencia INT AUTO_INCREMENT PRIMARY KEY,
+    Fallas INT NOT NULL DEFAULT 0,
+    Codigo_Estudiante VARCHAR(50) NOT NULL,
+    ID_Sesion INT NOT NULL,
+    FOREIGN KEY (Codigo_Estudiante) REFERENCES Estudiante(Codigo_Estudiante),
+    FOREIGN KEY (ID_Sesion) REFERENCES Sesion_Tutoria(ID_Sesion)
+);
+
+CREATE TABLE Retroalimentacion (
+    ID_Retroalimentacion INT AUTO_INCREMENT PRIMARY KEY,
+    Calificacion DECIMAL(3,2) NOT NULL,
+    ID_Sesion INT NOT NULL,
+    Codigo_Estudiante VARCHAR(50) NOT NULL,
+    FOREIGN KEY (ID_Sesion) REFERENCES Sesion_Tutoria(ID_Sesion),
+    FOREIGN KEY (Codigo_Estudiante) REFERENCES Estudiante(Codigo_Estudiante)
+);
+
+CREATE TABLE Calificacion_Parcial (
+    ID_Calificacion INT AUTO_INCREMENT PRIMARY KEY,
+    Nota DECIMAL(3,2) NOT NULL,
+    Codigo_Estudiante VARCHAR(50) NOT NULL,
+    Codigo_Materia VARCHAR(50) NOT NULL,
+    FOREIGN KEY (Codigo_Estudiante) REFERENCES Estudiante(Codigo_Estudiante),
+    FOREIGN KEY (Codigo_Materia) REFERENCES Materia(Codigo_Materia)
+);
+
+CREATE TABLE Historial_Academico (
+    ID_Historial INT AUTO_INCREMENT PRIMARY KEY,
+    Periodo_Academico VARCHAR(20) NOT NULL,
+    Calificacion_Final DECIMAL(3,2) NOT NULL,
+    Codigo_Estudiante VARCHAR(50) NOT NULL,
+    Codigo_Materia VARCHAR(50) NOT NULL,
+    FOREIGN KEY (Codigo_Estudiante) REFERENCES Estudiante(Codigo_Estudiante),
+    FOREIGN KEY (Codigo_Materia) REFERENCES Materia(Codigo_Materia)
+);
+
+CREATE TABLE Alerta_Temprana (
+    ID_Alerta INT AUTO_INCREMENT PRIMARY KEY,
+    Nivel_Riesgo VARCHAR(50) NOT NULL,
+    Codigo_Estudiante VARCHAR(50) NOT NULL,
+    Codigo_Materia VARCHAR(50) NOT NULL,
+    FOREIGN KEY (Codigo_Estudiante) REFERENCES Estudiante(Codigo_Estudiante),
+    FOREIGN KEY (Codigo_Materia) REFERENCES Materia(Codigo_Materia)
+);
+
+CREATE TABLE Matricula_Periodo (
+    ID_Matricula INT AUTO_INCREMENT PRIMARY KEY,
+    Periodo_Academico VARCHAR(20) NOT NULL,
+    Estado_Matricula VARCHAR(50) NOT NULL,
+    Codigo_Estudiante VARCHAR(50) NOT NULL,
+    FOREIGN KEY (Codigo_Estudiante) REFERENCES Estudiante(Codigo_Estudiante)
+);
