@@ -6,7 +6,7 @@ Este tercer entregable corresponde a la implementación funcional de la base de 
 
 | Archivo | Descripción |
 |---|---|
-| [Diagrama Base de Datos Tutorías](./Diagrama_SistemaTutorias.png) | Diagrama / esquema visual de la base de datos |
+| [Diagrama Base de Datos Tutorías](./ERDPLUS.png) | Diagrama / esquema visual de la base de datos |
 | [Código Creación](./Creación) | Código para la creación de la base de datos |
 | [Código Inserción](./Inserción) | Código para insertar/poblar la base de datos |
 | [Código Consultas](./Consultas) | Ejemplos de consultas sobre nuestra base de datos |
